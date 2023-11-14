@@ -26,17 +26,17 @@ public class View {
         return input;
     }
 
-    public String inputMenu(String message) {
+    public String inputOrder(String message) {
         System.out.println(message);
 //        displayEntireMenu();
-        String input = Console.readLine();
+        String order = Console.readLine();
         try {
-            validateMenu(input);
+            validateOrder(order);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            inputMenu(message);
+            inputOrder(message);
         }
-        return input;
+        return order;
     }
 
     public void displayEventBenefitsPreview(Calendar date) {
@@ -61,14 +61,9 @@ public class View {
         }
     }
 
-    private void validateMenu(String input) {
+    private void validateOrder(String input) {
         String WRONG_MENU_ERROR = "유효하지 않은 주문입니다. 다시 입력해 주세요.";
-//        String WRONG_QUANTITY_WARNING = "메뉴는 한 번에 최대 20개까지만 주문할 수 있습니다.";
-        //고객이 메뉴판에 없는 메뉴를 입력하는 경우: 에러 메시지 출력, 다시 입력받기
-        //메뉴의 개수가 1 이상의 숫자가 아닌 경우: 에러 메시지 출력, 다시 입력받기
-        //메뉴 형식이 예시와 다른 경우: 에러 메시지 출력, 다시 입력받기
-        //중복 메뉴를 입력한 경우: 에러 메시지 출력, 다시 입력받기
-//        Integer count = 0;
+
         ArrayList<String> menuAndQuantityList = new ArrayList<>(Arrays.asList(input.trim().split(",")));
         ArrayList<String> orderedMenu = new ArrayList<>();
         for (String menuAndQuantity : menuAndQuantityList) {
@@ -85,8 +80,6 @@ public class View {
             String quantity = menuAndQuantityPair.get(1);
 
             orderedMenu.add(menu);
-//            System.out.println(name);
-//            System.out.println(quantity);
             if (!entireMenu.contains(menu)) {
                 throw new IllegalArgumentException(ERROR_MESSAGE + WRONG_MENU_ERROR);
             }
@@ -99,11 +92,7 @@ public class View {
             if (Integer.parseInt(quantity) < 1) {
                 throw new IllegalArgumentException(ERROR_MESSAGE + WRONG_MENU_ERROR);
             }
-//            count+=Integer.parseInt(quantity);
-//            System.out.println("count : " + count);
-//            if (count > 20) {
-//                throw new IllegalArgumentException(ERROR_MESSAGE + WRONG_QUANTITY_WARNING);
-//            }
+
         }
 
         HashSet<String> uniqueMenuAndQuantities = new HashSet<>(orderedMenu);

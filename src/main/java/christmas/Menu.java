@@ -1,5 +1,7 @@
 package christmas;
 
+import java.util.EnumSet;
+
 public enum Menu {
     양송이수프(MenuCategory.애피타이저, 6_000),
     타파스(MenuCategory.애피타이저, 5_000),
@@ -10,8 +12,15 @@ public enum Menu {
     아이스크림(MenuCategory.디저트, 5_000),
     제로콜라(MenuCategory.음료, 3_000),
     레드와인(MenuCategory.음료, 60_000),
-    샴페인(MenuCategory.음료, 25_000)
-    ;
+    샴페인(MenuCategory.음료, 25_000);
+
+    private final MenuCategory menuKind;
+    private final Integer money;
+
+    Menu(MenuCategory menuKind, Integer money) {
+        this.menuKind = menuKind;
+        this.money = money;
+    }
 
     public MenuCategory getMenuKind() {
         return menuKind;
@@ -21,11 +30,13 @@ public enum Menu {
         return money;
     }
 
-    private final MenuCategory menuKind;
-    private final Integer money;
-
-    Menu(MenuCategory menuKind, Integer money) {
-        this.menuKind = menuKind;
-        this.money = money;
+    static public EnumSet<Menu> getMenuOf(MenuCategory category) {
+        EnumSet<Menu> menus = EnumSet.noneOf(Menu.class);
+        for (Menu menu: EnumSet.allOf(Menu.class)) {
+            if (menu.getMenuKind() == category) {
+                menus.add(menu);
+            }
+        }
+        return menus;
     }
 }

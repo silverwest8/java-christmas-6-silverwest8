@@ -14,8 +14,9 @@ public class Controller {
         String visitDate = this.view.inputVisitDate(this.eventPlanner.VISIT_DATE_QUESTION);
         this.eventPlanner.manageDate(visitDate);
 
-        String menu = this.view.inputMenu(this.eventPlanner.MENU_QUESTION);
-        this.eventPlanner.manageMenu(menu);
+        String order = this.view.inputOrder(this.eventPlanner.ORDER_QUESTION);
+        this.eventPlanner.manageOrder(order);
+
         sayPreview(this.eventPlanner.getEvent().getVisitDate());
 //        this.eventPlanner.planEvent(customer);
 
@@ -23,7 +24,7 @@ public class Controller {
     }
 
     private void sayHello() {
-        this.view.displayEventPlannerGreeting(this.eventPlanner.SAY_HELLO);
+        this.view.displayEventPlannerGreeting(this.eventPlanner.GREETING);
     }
 
     private void sayPreview(Calendar date) {
