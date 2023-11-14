@@ -101,6 +101,10 @@ public class EventPlanner {
         return totalPrice;
     }
 
+    public Boolean isOverMinTotalPrice(Integer totalPrice) {
+        return totalPrice >= 10_000;
+    }
+
     public void judgementBonusMenu(Customer customer) {
         if (isDateInRange(customer.getVisitDate(), bonusEvent.getStartDate(), bonusEvent.getEndDate())
                 && customer.getTotalPrice() >= 120_000

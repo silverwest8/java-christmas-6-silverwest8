@@ -148,6 +148,8 @@ public class View {
     }
 
     public void displayBenefitDetails(EventPlanner eventPlanner, Customer customer) {
+//        System.out.println(customer.getAppliedEvents());
+//        System.out.println(customer.getAppliedEvents().size());
         int christmasDiscount = eventPlanner.getChristmasDdayEvent().getDiscountAmount();
         int weekdayDiscount = eventPlanner.getWeekdayEvent().getDiscountAmount();
         int weekendDiscount = eventPlanner.getWeekendEvent().getDiscountAmount();
@@ -155,11 +157,17 @@ public class View {
         int bonusEvent = eventPlanner.getBonusEvent().getDiscountAmount();
 
         System.out.println("<혜택 내역>");
+        if (customer.getAppliedEvents().isEmpty()) {
+            System.out.println("없음");
+            System.out.println();
+            return;
+        }
         printBenefit("크리스마스 디데이 할인", christmasDiscount);
         printBenefit("평일 할인", weekdayDiscount);
         printBenefit("주말 할인", weekendDiscount);
         printBenefit("특별 할인", specialDiscount);
         printBenefit("증정 이벤트", bonusEvent);
+        System.out.println();
     }
 
     private static void printBenefit(String benefitName, int amount) {

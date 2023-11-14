@@ -23,13 +23,15 @@ public class Controller {
 
         showTotalPrice(this.eventPlanner.calculateTotalPrice(customer));
 
-        this.eventPlanner.judgementBonusMenu(customer);
-        showBonusMenu();
+        if (this.eventPlanner.isOverMinTotalPrice(customer.getTotalPrice())) {
+            this.eventPlanner.judgementBonusMenu(customer);
+            this.eventPlanner.judgementChristmasDdayEvent(customer);
+            this.eventPlanner.judgementWeekdayEvent(customer);
+            this.eventPlanner.judgementWeekendEvent(customer);
+            this.eventPlanner.judgementSpecialEvent(customer);
+        }
 
-        this.eventPlanner.judgementChristmasDdayEvent(customer);
-        this.eventPlanner.judgementWeekdayEvent(customer);
-        this.eventPlanner.judgementWeekendEvent(customer);
-        this.eventPlanner.judgementSpecialEvent(customer);
+        showBonusMenu();
 
         showBenefitDetails();
 
