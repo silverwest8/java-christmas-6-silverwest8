@@ -145,4 +145,16 @@ public class View {
         System.out.println();
     }
 
+    public void displayBenefitDetails(int christmasDiscount, int weekdayDiscount, int specialDiscount, int bonusEvent) {
+        System.out.println("<혜택 내역>");
+        printBenefit("크리스마스 디데이 할인", christmasDiscount);
+        printBenefit("평일 할인", weekdayDiscount);
+        printBenefit("특별 할인", specialDiscount);
+        printBenefit("증정 이벤트", bonusEvent);
+    }
+
+    private static void printBenefit(String benefitName, int amount) {
+        System.out.printf("%s: %,d원%n", benefitName, amount);
+    }
+
 }

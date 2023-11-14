@@ -1,8 +1,6 @@
 package christmas;
 
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Customer {
 
@@ -10,6 +8,7 @@ public class Customer {
     private Map<Menu, Integer> orderedMenu = new HashMap<>();
     private Integer totalPrice;
     private Map<Menu, Integer> bonusMenu = new HashMap<>();
+    private List<Event> appliedEvents = new ArrayList<>();
 
 
     public Calendar getVisitDate() {

@@ -26,6 +26,8 @@ public class Controller {
         this.eventPlanner.judgementBonusMenu(customer);
         showBonusMenu();
 
+        this.eventPlanner.judgementChristmasDdayEvent(customer);
+
 //        this.eventPlanner.planEvent(customer);
 
 

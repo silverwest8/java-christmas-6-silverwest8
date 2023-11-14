@@ -7,12 +7,12 @@ public class EventPlanner {
     public final String VISIT_DATE_QUESTION = "12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)";
     public final String ORDER_QUESTION = "주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)";
     static final String WARNING_MESSAGE = "[WARNING] ";
-//    private final Event event;
+    private final ChristmasDdayEvent christmasDdayEvent;
     private final BonusEvent bonusEvent;
 
     public EventPlanner() {
+        this.christmasDdayEvent = new ChristmasDdayEvent();
         this.bonusEvent = new BonusEvent();
-//        this.event = new Event();
     }
 
     public void manageDate(Customer customer, String visitDate) {
@@ -26,7 +26,8 @@ public class EventPlanner {
         HashMap<Menu, Integer> order = new HashMap<>();
         ArrayList<String> menuAndQuantityList = new ArrayList<>(Arrays.asList(input.trim().split(",")));
         for (String menuAndQuantity : menuAndQuantityList) {
-            ArrayList<String> menuAndQuantityPair = new ArrayList<>(Arrays.asList(menuAndQuantity.trim().split("-")));
+            ArrayList<String> menuAndQuantityPair
+                    = new ArrayList<>(Arrays.asList(menuAndQuantity.trim().split("-")));
             Menu menu = Menu.valueOf(menuAndQuantityPair.get(0));
             Integer quantity = Integer.parseInt(menuAndQuantityPair.get(1));
             order.put(menu, quantity);
@@ -82,6 +83,14 @@ public class EventPlanner {
         return !targetDate.before(event.getEventStartDate()) && !targetDate.after(event.getEventEndDate());
     }
 
+    public void judgementChristmasDdayEvent(Customer customer) {
+        if (isDateInRange(customer.getVisitDate(), christmasDdayEvent)) {
+            int appliedDay = customer.getVisitDate().get(Calendar.DATE) - 1;
+            int discountAmount = ChristmasDdayEvent.minDiscountAmount + appliedDay * ChristmasDdayEvent.discountUnit;
+            christmasDdayEvent.setDiscountAmount(discountAmount);
+        }
+    }
+
 //    public void planEvent(Customer customer) {
 //        sayHello();
 //
@@ -91,7 +100,7 @@ public class EventPlanner {
 //        promptMenu();
 //        Map<Menu, Integer> menu = customer.requestMenu();
 
-        // 이벤트 생성
+    // 이벤트 생성
 //        Event event = new Event();
 //        event.setVisitDate(visitDate);
 //        event.setMenu(menu);
