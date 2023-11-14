@@ -67,7 +67,7 @@ public class EventPlanner {
         customer.setOrderedMenu(order);
     }
 
-    private void validationMenuCount(HashMap<Menu, Integer> order) {
+    private static void validationMenuCount(HashMap<Menu, Integer> order) {
         String TOTAL_QUANTITY_WARNING = "메뉴는 한 번에 최대 20개까지만 주문할 수 있습니다.";
         Integer count = 0;
         for (Menu key : order.keySet()) {
@@ -78,7 +78,7 @@ public class EventPlanner {
         }
     }
 
-    private void validationOnlyDrink(HashMap<Menu, Integer> order) {
+    private static void validationOnlyDrink(HashMap<Menu, Integer> order) {
         String ORDER_DRINK_ONLY_WARNING = "음료만 주문 시, 주문할 수 없습니다.";
         for (Menu key : order.keySet()) {
             if (!Menu.getMenuOf(MenuCategory.음료).contains(key)) {
@@ -86,6 +86,10 @@ public class EventPlanner {
             }
         }
         System.out.println(WARNING_MESSAGE + ORDER_DRINK_ONLY_WARNING);
+    }
+
+    private void validateMinTotal() {
+
     }
 
     public void calculateTotalPrice(Customer customer) {
