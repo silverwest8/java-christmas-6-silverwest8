@@ -19,9 +19,7 @@ public class OutputView {
     static final String NOTHING = "없음";
     static final String WON = "원";
     static final String UNIT = "개";
-    static final String DASH = "-";
     static final String MINUS = "-";
-    static final String COMMA = ",";
     DecimalFormat decFormat = new DecimalFormat("###,###");
 
     public void displayEventPlannerGreeting(String message) {

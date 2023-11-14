@@ -7,12 +7,11 @@ import java.util.*;
 
 public class InputView {
     static final String ERROR_MESSAGE = "[ERROR] ";
-    static final String PREVIEW__MESSAGE = "에 우테코 식당에서 받을 이벤트 혜택 미리 보기!";
     static final String DATE_RANGE_ERROR = "유효하지 않은 날짜입니다. 다시 입력해 주세요.";
     static final String WRONG_MENU_ERROR = "유효하지 않은 주문입니다. 다시 입력해 주세요.";
     static final String REG_EXP = "^[0-9]+$";
     static final Integer MIN_DATE = 1;
-    static final Integer MAX_DATE = 31;;
+    static final Integer MAX_DATE = 31;
     static final String DASH = "-";
     static final String COMMA = ",";
 

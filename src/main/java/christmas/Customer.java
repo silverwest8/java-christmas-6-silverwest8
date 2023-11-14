@@ -9,7 +9,7 @@ public class Customer {
     private Calendar visitDate;
     private Map<Menu, Integer> orderedMenu = new HashMap<>();
     private Integer totalPrice = 0;
-    private List<Event> appliedEvents = new ArrayList<>();
+    final private List<Event> appliedEvents = new ArrayList<>();
     private Integer benefitAmount = 0;
     private Integer discountedPaymentAmount = 0;
     private Badge badge;
@@ -41,10 +41,6 @@ public class Customer {
 
     public List<Event> getAppliedEvents() {
         return appliedEvents;
-    }
-
-    public void setAppliedEvents(List<Event> appliedEvents) {
-        this.appliedEvents = appliedEvents;
     }
 
     public Integer getBenefitAmount() {

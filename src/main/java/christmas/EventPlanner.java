@@ -88,10 +88,6 @@ public class EventPlanner {
         System.out.println(WARNING_MESSAGE + ORDER_DRINK_ONLY_WARNING);
     }
 
-    private void validateMinTotal() {
-
-    }
-
     public void calculateTotalPrice(Customer customer) {
         Map<Menu, Integer> orderedMenu = customer.getOrderedMenu();
         int totalPrice = 0;
