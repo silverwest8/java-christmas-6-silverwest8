@@ -4,7 +4,7 @@ import java.util.Calendar;
 
 public class Controller {
     EventPlanner eventPlanner = new EventPlanner();
-//    Customer customer = new Customer();
+    Customer customer = new Customer();
     View view = new View();
 
     public void run() {
@@ -12,18 +12,18 @@ public class Controller {
         sayHello();
 
         String visitDate = this.view.inputVisitDate(this.eventPlanner.VISIT_DATE_QUESTION);
-        this.eventPlanner.manageDate(visitDate);
+        this.eventPlanner.manageDate(customer, visitDate);
 
         String order = this.view.inputOrder(this.eventPlanner.ORDER_QUESTION);
-        this.eventPlanner.manageOrder(order);
+        this.eventPlanner.manageOrder(customer, order);
 
-        sayPreview(this.eventPlanner.getEvent().getVisitDate());
+        sayPreview(this.customer.getVisitDate());
 
         showOrderedMenu();
 
-        showTotalPrice(this.eventPlanner.calculateTotalPrice());
+        showTotalPrice(this.eventPlanner.calculateTotalPrice(customer));
 
-        this.eventPlanner.judgementBonusMenu(this.eventPlanner.getEvent().getTotalPrice());
+        this.eventPlanner.judgementBonusMenu(customer);
         showBonusMenu();
 
 //        this.eventPlanner.planEvent(customer);
@@ -40,7 +40,7 @@ public class Controller {
     }
 
     private void showOrderedMenu() {
-        this.view.displayOrderedMenu(this.eventPlanner.getEvent());
+        this.view.displayOrderedMenu(customer);
     }
 
     private void showTotalPrice(Integer totalPrice) {
@@ -48,6 +48,6 @@ public class Controller {
     }
 
     private void showBonusMenu() {
-        this.view.displayBonusMenu(this.eventPlanner.getEvent());
+        this.view.displayBonusMenu(customer);
     }
 }

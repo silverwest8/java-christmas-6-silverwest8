@@ -7,19 +7,9 @@ public class EventPlanner {
     public final String VISIT_DATE_QUESTION = "12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)";
     public final String ORDER_QUESTION = "주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)";
     static final String WARNING_MESSAGE = "[WARNING] ";
-    private Calendar eventStartDate;
-    private Calendar eventEndDate;
     private final Event event;
 
     public EventPlanner(Calendar eventStartDate) {
-        Calendar startDate = Calendar.getInstance();
-        startDate.set(2023, Calendar.DECEMBER, 1);
-        this.eventStartDate = startDate;
-
-        Calendar endDate = Calendar.getInstance();
-        endDate.set(2023, Calendar.DECEMBER, 31);
-        eventEndDate = endDate;
-
         event = new Event();
     }
 
@@ -31,14 +21,14 @@ public class EventPlanner {
         this.event = new Event();
     }
 
-    public void manageDate(String visitDate) {
+    public void manageDate(Customer customer, String visitDate) {
         Calendar calendar = Calendar.getInstance();
         Integer date = Integer.parseInt(visitDate);
         calendar.set(2023, Calendar.DECEMBER, date);
-        event.setVisitDate(calendar);
+        customer.setVisitDate(calendar);
     }
 
-    public void manageOrder(String input) {
+    public void manageOrder(Customer customer, String input) {
         HashMap<Menu, Integer> order = new HashMap<>();
         ArrayList<String> menuAndQuantityList = new ArrayList<>(Arrays.asList(input.trim().split(",")));
         for (String menuAndQuantity : menuAndQuantityList) {
@@ -49,7 +39,7 @@ public class EventPlanner {
         }
         validationMenuCount(order);
         validationOnlyDrink(order);
-        event.setOrderedMenu(order);
+        customer.setOrderedMenu(order);
     }
 
     private void validationMenuCount(HashMap<Menu, Integer> order) {
@@ -76,26 +66,26 @@ public class EventPlanner {
         System.out.println(WARNING_MESSAGE + ORDER_DRINK_ONLY_WARNING);
     }
 
-    public Integer calculateTotalPrice() {
-        Map<Menu, Integer> orderedMenu = event.getOrderedMenu();
+    public Integer calculateTotalPrice(Customer customer) {
+        Map<Menu, Integer> orderedMenu = customer.getOrderedMenu();
         Integer totalPrice = 0;
         for (Menu menu : orderedMenu.keySet()) {
             totalPrice += menu.getMoney() * orderedMenu.get(menu);
         }
-        event.setTotalPrice(totalPrice);
+        customer.setTotalPrice(totalPrice);
         return totalPrice;
     }
 
-    public void judgementBonusMenu(Integer totalPrice) {
-        if (isDateInRange(event.getVisitDate(), eventStartDate, eventEndDate) && totalPrice >= 120_000) {
+    public void judgementBonusMenu(Customer customer) {
+        if (isDateInRange(customer.getVisitDate(), event) && customer.getTotalPrice() >= 120_000) {
             HashMap<Menu, Integer> bonusMenu = new HashMap<>();
             bonusMenu.put(Menu.샴페인, 1);
-            event.setBonusMenu(bonusMenu);
+            customer.setBonusMenu(bonusMenu);
         }
     }
 
-    private Boolean isDateInRange(Calendar targetDate, Calendar startDate, Calendar endDate) {
-        return !targetDate.before(startDate) && !targetDate.after(endDate);
+    private Boolean isDateInRange(Calendar targetDate, Event event) {
+        return !targetDate.before(event.getEventStartDate()) && !targetDate.after(event.getEventEndDate());
     }
 
     public void planEvent(Customer customer) {

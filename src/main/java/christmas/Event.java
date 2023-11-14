@@ -4,40 +4,33 @@ import java.util.Calendar;
 import java.util.Map;
 
 public class Event {
-    private Calendar visitDate;
-    private Map<Menu, Integer> orderedMenu;
-    private Integer totalPrice;
-    private Map<Menu, Integer> bonusMenu;
+    private Calendar eventStartDate;
+    private Calendar eventEndDate;
 
-    public Calendar getVisitDate() {
-        return visitDate;
+    //    public Event(Calendar eventStartDate, Calendar eventEndDate) {
+    public Event() {
+        Calendar startDate = Calendar.getInstance();
+        startDate.set(2023, Calendar.DECEMBER, 1);
+        this.eventStartDate = startDate;
+
+        Calendar endDate = Calendar.getInstance();
+        endDate.set(2023, Calendar.DECEMBER, 31);
+        this.eventEndDate = endDate;
     }
 
-    public void setVisitDate(Calendar visitDate) {
-        this.visitDate = visitDate;
+    public Calendar getEventStartDate() {
+        return eventStartDate;
     }
 
-    public Map<Menu, Integer> getOrderedMenu() {
-        return orderedMenu;
+    public Calendar getEventEndDate() {
+        return eventEndDate;
     }
 
-    public void setOrderedMenu(Map<Menu, Integer> orderedMenu) {
-        this.orderedMenu = orderedMenu;
+    public void setEventStartDate(Calendar eventStartDate) {
+        this.eventStartDate = eventStartDate;
     }
 
-    public Integer getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(Integer totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
-    public Map<Menu, Integer> getBonusMenu() {
-        return bonusMenu;
-    }
-
-    public void setBonusMenu(Map<Menu, Integer> bonusMenu) {
-        this.bonusMenu = bonusMenu;
+    public void setEventEndDate(Calendar eventEndDate) {
+        this.eventEndDate = eventEndDate;
     }
 }

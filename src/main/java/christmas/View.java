@@ -116,9 +116,9 @@ public class View {
         }
     }
 
-    public void displayOrderedMenu(Event event) {
+    public void displayOrderedMenu(Customer customer) {
         System.out.println("<주문 메뉴>");
-        Map<Menu, Integer> orderedMenu = event.getOrderedMenu();
+        Map<Menu, Integer> orderedMenu = customer.getOrderedMenu();
         for (Menu menu : orderedMenu.keySet()) {
             System.out.println(menu.name() + " " + orderedMenu.get(menu) + "개");
         }
@@ -131,9 +131,9 @@ public class View {
         System.out.println();
     }
 
-    public void displayBonusMenu(Event event) {
+    public void displayBonusMenu(Customer customer) {
         System.out.println("<증정 메뉴>");
-        Map<Menu, Integer> bonusMenu = event.getBonusMenu();
+        Map<Menu, Integer> bonusMenu = customer.getBonusMenu();
         if (bonusMenu == null) {
             System.out.println("없음");
             System.out.println();
