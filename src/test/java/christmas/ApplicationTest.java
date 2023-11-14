@@ -34,7 +34,15 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 날짜_예외_테스트() {
+    void 날짜_길이_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("99999999999");
+            assertThat(output()).contains("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+        });
+    }
+
+    @Test
+    void 날짜_문자입력_예외_테스트() {
         assertSimpleTest(() -> {
             runException("a");
             assertThat(output()).contains("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
@@ -42,9 +50,57 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 주문_예외_테스트() {
+    void 날짜_범위_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("40");
+            assertThat(output()).contains("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+        });
+    }
+
+    @Test
+    void 주문_빈주문_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("3", "\n");
+            assertThat(output()).contains("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        });
+    }
+
+    @Test
+    void 주문_메뉴형식_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("3", "제로콜라");
+            assertThat(output()).contains("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        });
+    }
+
+    @Test
+    void 주문_없는메뉴_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("3", "파스타-1");
+            assertThat(output()).contains("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        });
+    }
+
+    @Test
+    void 주문_주문량_형식_예외_테스트() {
         assertSimpleTest(() -> {
             runException("3", "제로콜라-a");
+            assertThat(output()).contains("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        });
+    }
+
+    @Test
+    void 주문_주문량_초과_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("3", "제로콜라-9999999999");
+            assertThat(output()).contains("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        });
+    }
+
+    @Test
+    void 주문_중복_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("3", "티본스테이크-1,제로콜라-1,티본스테이크-1");
             assertThat(output()).contains("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         });
     }

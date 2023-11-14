@@ -13,6 +13,14 @@ public enum Menu {
     샴페인(MenuCategory.음료, 25_000)
     ;
 
+    public MenuCategory getMenuKind() {
+        return menuKind;
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
     private final MenuCategory menuKind;
     private final Integer money;
 
