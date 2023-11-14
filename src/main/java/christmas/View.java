@@ -179,10 +179,21 @@ public class View {
     public void displayBenefitDetails(Customer customer) {
         System.out.println("<총혜택 금액>");
         String sign = "";
-        if (customer.getBenefitPrice() > 0) {
+        if (customer.getBenefitAmount() > 0) {
             sign = "-";
         }
-        System.out.printf(sign+decFormat.format(customer.getBenefitPrice())+"원");
+        System.out.println(sign+decFormat.format(customer.getBenefitAmount())+"원");
+        System.out.println();
+    }
+
+    public void displayDiscountedPaymentAmount(Customer customer) {
+        System.out.println("<할인 후 예상 결제 금액>");
+        Integer discountedPaymentAmount = customer.getDiscountedPaymentAmount();
+        String sign = "";
+        if (discountedPaymentAmount < 0) {
+            sign = "-";
+        }
+        System.out.println(sign+decFormat.format(discountedPaymentAmount)+"원");
         System.out.println();
     }
 

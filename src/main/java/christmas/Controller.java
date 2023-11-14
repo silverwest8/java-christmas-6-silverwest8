@@ -39,9 +39,8 @@ public class Controller {
         this.eventPlanner.calculateTotalBenefit(customer);
         showTotalBenefit();
 
-//        this.eventPlanner.planEvent(customer);
-
-
+        this.eventPlanner.calculateDiscountedPaymentAmount(customer);
+        showDiscountedPaymentAmount();
     }
 
     private void sayHello() {
@@ -70,5 +69,9 @@ public class Controller {
 
     private void showTotalBenefit() {
         this.view.displayBenefitDetails(customer);
+    }
+
+    private void showDiscountedPaymentAmount() {
+        this.view.displayDiscountedPaymentAmount(customer);
     }
 }

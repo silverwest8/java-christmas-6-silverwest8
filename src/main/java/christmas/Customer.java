@@ -11,7 +11,8 @@ public class Customer {
     private Map<Menu, Integer> orderedMenu = new HashMap<>();
     private Integer totalPrice = 0;
     private List<Event> appliedEvents = new ArrayList<>();
-    private Integer benefitPrice = 0;
+    private Integer benefitAmount = 0;
+    private Integer discountedPaymentAmount = 0;
 
 
     public Calendar getVisitDate() {
@@ -46,12 +47,20 @@ public class Customer {
         this.appliedEvents = appliedEvents;
     }
 
-    public Integer getBenefitPrice() {
-        return benefitPrice;
+    public Integer getBenefitAmount() {
+        return benefitAmount;
     }
 
-    public void setBenefitPrice(Integer benefitPrice) {
-        this.benefitPrice = benefitPrice;
+    public void setBenefitAmount(Integer benefitAmount) {
+        this.benefitAmount = benefitAmount;
+    }
+
+    public Integer getDiscountedPaymentAmount() {
+        return discountedPaymentAmount;
+    }
+
+    public void setDiscountedPaymentAmount(Integer discountedPaymentAmount) {
+        this.discountedPaymentAmount = discountedPaymentAmount;
     }
 
 }

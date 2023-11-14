@@ -193,22 +193,18 @@ public class EventPlanner {
         int bonusEventDiscount = bonusEvent.getDiscountAmount();
         Integer totalBenefit =
                 christmasDiscount + weekdayDiscount + weekendDiscount + specialDiscount + bonusEventDiscount;
-        customer.setBenefitPrice(totalBenefit);
+        customer.setBenefitAmount(totalBenefit);
     }
 
-//    public void planEvent(Customer customer) {
-//        sayHello();
-//
-//        promptVisitDate();
-//        Calendar visitDate = customer.requestVisitDate();
-//
-//        promptMenu();
-//        Map<Menu, Integer> menu = customer.requestMenu();
+    public void calculateDiscountedPaymentAmount(Customer customer) {
+        int christmasDiscount = christmasDdayEvent.getDiscountAmount();
+        int weekdayDiscount = weekdayEvent.getDiscountAmount();
+        int weekendDiscount = weekendEvent.getDiscountAmount();
+        int specialDiscount = specialEvent.getDiscountAmount();
+        Integer totalDiscount = christmasDiscount + weekdayDiscount + weekendDiscount + specialDiscount;
+        Integer discountedPaymentAmount = customer.getTotalPrice() - totalDiscount;
+        customer.setDiscountedPaymentAmount(discountedPaymentAmount);
+    }
 
-// 이벤트 생성
-//        Event event = new Event();
-//        event.setVisitDate(visitDate);
-//        event.setMenu(menu);
-//    }
 
 }

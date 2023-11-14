@@ -161,6 +161,24 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 예상결제금액_테스트1() {
+        assertSimpleTest(() -> {
+            runException("3", "티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1");
+            assertThat(output()).contains(
+                    "<할인 후 예상 결제 금액>" + LINE_SEPARATOR + "135,754원"
+            );
+        });
+    }
+
+    @Test
+    void 예상결제금액_테스트2() {
+        assertSimpleTest(() -> {
+            runException("26", "타파스-1,제로콜라-1");
+            assertThat(output()).contains("<할인 후 예상 결제 금액>" + LINE_SEPARATOR + "8,500원");
+        });
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
