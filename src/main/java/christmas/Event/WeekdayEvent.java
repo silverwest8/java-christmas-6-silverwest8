@@ -10,23 +10,13 @@ public class WeekdayEvent extends Event {
     public static final List<Integer> dayNum = Arrays.asList(
             Calendar.SUNDAY, Calendar.MONDAY, Calendar.TUESDAY, Calendar.WEDNESDAY, Calendar.THURSDAY
     );
-    ;
     public static final MenuCategory appliedCategory = MenuCategory.디저트;
     public static final Integer discountUnit = 2_023;
     private Integer discountAmount = 0;
 
-    public List<Integer> getDayNum() {
-        return dayNum;
-    }
-
-    public MenuCategory getAppliedMenuCategory() {
-        return appliedCategory;
-    }
-
     public void setDiscountAmount(Integer discountAmount) {
         this.discountAmount = discountAmount;
     }
-
 
     public Integer getDiscountAmount() {
         return discountAmount;

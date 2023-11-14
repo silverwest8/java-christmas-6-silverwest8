@@ -6,7 +6,6 @@ import christmas.Menu.Menu;
 import java.util.*;
 
 public class Customer {
-
     private Calendar visitDate;
     private Map<Menu, Integer> orderedMenu = new HashMap<>();
     private Integer totalPrice = 0;
@@ -71,5 +70,4 @@ public class Customer {
     public void setBadge(Badge badge) {
         this.badge = badge;
     }
-
 }

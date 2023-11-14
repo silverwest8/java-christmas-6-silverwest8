@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class SpecialEvent extends Event {
-
     private final List<Integer> starDays;
     public static final Integer discountUnit = 1_000;
     private Integer discountAmount = 0;

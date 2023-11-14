@@ -32,7 +32,7 @@ public class View {
 
     public String inputOrder(String message) {
         System.out.println(message);
-//        displayEntireMenu();
+        displayEntireMenu();
         String order = Console.readLine();
         try {
             validateOrder(order);
@@ -148,8 +148,6 @@ public class View {
     }
 
     public void displayBenefitDetails(EventPlanner eventPlanner, Customer customer) {
-//        System.out.println(customer.getAppliedEvents());
-//        System.out.println(customer.getAppliedEvents().size());
         int christmasDiscount = eventPlanner.getChristmasDdayEvent().getDiscountAmount();
         int weekdayDiscount = eventPlanner.getWeekdayEvent().getDiscountAmount();
         int weekendDiscount = eventPlanner.getWeekendEvent().getDiscountAmount();

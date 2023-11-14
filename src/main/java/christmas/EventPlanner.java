@@ -47,7 +47,7 @@ public class EventPlanner {
 
     public void manageDate(Customer customer, String visitDate) {
         Calendar calendar = Calendar.getInstance();
-        Integer date = Integer.parseInt(visitDate);
+        int date = Integer.parseInt(visitDate);
         calendar.set(2023, Calendar.DECEMBER, date);
         customer.setVisitDate(calendar);
     }
@@ -73,7 +73,6 @@ public class EventPlanner {
         for (Menu key : order.keySet()) {
             count += order.get(key);
         }
-//        System.out.println("count : " + count);
         if (count > 20) {
             System.out.println(WARNING_MESSAGE + TOTAL_QUANTITY_WARNING);
         }
@@ -81,9 +80,7 @@ public class EventPlanner {
 
     private void validationOnlyDrink(HashMap<Menu, Integer> order) {
         String ORDER_DRINK_ONLY_WARNING = "음료만 주문 시, 주문할 수 없습니다.";
-//        System.out.println(Menu.getMenuOf(MenuCategory.음료));
         for (Menu key : order.keySet()) {
-//            System.out.println(Menu.valueOf(key).getMenuKind());
             if (!Menu.getMenuOf(MenuCategory.음료).contains(key)) {
                 return;
             }
@@ -93,7 +90,7 @@ public class EventPlanner {
 
     public void calculateTotalPrice(Customer customer) {
         Map<Menu, Integer> orderedMenu = customer.getOrderedMenu();
-        Integer totalPrice = 0;
+        int totalPrice = 0;
         for (Menu menu : orderedMenu.keySet()) {
             totalPrice += menu.getMoney() * orderedMenu.get(menu);
         }
@@ -112,7 +109,6 @@ public class EventPlanner {
             bonusMenu.put(Menu.샴페인, 1);
             bonusEvent.setBonusMenu(bonusMenu);
             bonusEvent.setDiscountAmount(Menu.샴페인.getMoney());
-            //
             customer.getAppliedEvents().add(bonusEvent);
         }
     }
@@ -219,5 +215,4 @@ public class EventPlanner {
             customer.setBadge(Badge.별);
         }
     }
-
 }
