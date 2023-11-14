@@ -179,6 +179,24 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 배지_있음_테스트() {
+        assertSimpleTest(() -> {
+            runException("3", "티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1");
+            assertThat(output()).contains(
+                    "<12월 이벤트 배지>" + LINE_SEPARATOR + "산타"
+            );
+        });
+    }
+
+    @Test
+    void 배지_없음_테스트() {
+        assertSimpleTest(() -> {
+            runException("26", "타파스-1,제로콜라-1");
+            assertThat(output()).contains("<12월 이벤트 배지>" + LINE_SEPARATOR + "없음");
+        });
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});

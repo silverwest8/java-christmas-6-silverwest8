@@ -41,6 +41,9 @@ public class Controller {
 
         this.eventPlanner.calculateDiscountedPaymentAmount(customer);
         showDiscountedPaymentAmount();
+
+        this.eventPlanner.grantBadge(customer);
+        showGrantedBadge();
     }
 
     private void sayHello() {
@@ -73,5 +76,9 @@ public class Controller {
 
     private void showDiscountedPaymentAmount() {
         this.view.displayDiscountedPaymentAmount(customer);
+    }
+
+    private void showGrantedBadge() {
+        this.view.displayGrantedBadge(customer);
     }
 }

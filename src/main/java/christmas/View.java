@@ -197,4 +197,15 @@ public class View {
         System.out.println();
     }
 
+    public void displayGrantedBadge(Customer customer) {
+        System.out.println("<12월 이벤트 배지>");
+        if (customer.getBadge() == null) {
+            System.out.println("없음");
+            System.out.println();
+            return;
+        }
+        System.out.println(customer.getBadge().name());
+        System.out.println();
+    }
+
 }

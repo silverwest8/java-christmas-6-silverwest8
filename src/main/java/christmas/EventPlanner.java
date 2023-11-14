@@ -206,5 +206,18 @@ public class EventPlanner {
         customer.setDiscountedPaymentAmount(discountedPaymentAmount);
     }
 
+    public void grantBadge(Customer customer) {
+        if (customer.getBenefitAmount() >= Badge.산타.getPrice()) {
+            customer.setBadge(Badge.산타);
+            return;
+        }
+        if (customer.getBenefitAmount() >= Badge.트리.getPrice()) {
+            customer.setBadge(Badge.트리);
+            return;
+        }
+        if (customer.getBenefitAmount() >= Badge.별.getPrice()) {
+            customer.setBadge(Badge.별);
+        }
+    }
 
 }

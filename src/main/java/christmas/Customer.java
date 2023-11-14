@@ -13,6 +13,7 @@ public class Customer {
     private List<Event> appliedEvents = new ArrayList<>();
     private Integer benefitAmount = 0;
     private Integer discountedPaymentAmount = 0;
+    private Badge badge;
 
 
     public Calendar getVisitDate() {
@@ -61,6 +62,14 @@ public class Customer {
 
     public void setDiscountedPaymentAmount(Integer discountedPaymentAmount) {
         this.discountedPaymentAmount = discountedPaymentAmount;
+    }
+
+    public Badge getBadge() {
+        return badge;
+    }
+
+    public void setBadge(Badge badge) {
+        this.badge = badge;
     }
 
 }
