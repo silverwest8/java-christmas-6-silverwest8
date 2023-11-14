@@ -10,6 +10,7 @@ public class View {
     static final String regExp = "^[0-9]+$";
     static final Integer MIN_DATE = 1;
     static final Integer MAX_DATE = 31;
+
     public void displayEventPlannerGreeting(String message) {
         System.out.println(message);
     }
@@ -75,7 +76,7 @@ public class View {
             for (Menu value : EnumSet.allOf(Menu.class)) {
                 entireMenu.add(value.name());
             }
-            
+
             String menu = menuAndQuantityPair.get(0);
             String quantity = menuAndQuantityPair.get(1);
 
@@ -104,13 +105,21 @@ public class View {
     public void displayEntireMenu() {
         DecimalFormat decFormat = new DecimalFormat("###,###");
         for (MenuCategory value : EnumSet.allOf(MenuCategory.class)) {
-            System.out.println("<"+value.name()+">");
+            System.out.println("<" + value.name() + ">");
             EnumSet.allOf(Menu.class).forEach(menu -> {
                 if (menu.getMenuKind() == value) {
-                    System.out.print(menu.name()+"("+decFormat.format(menu.getMoney())+") ");
+                    System.out.print(menu.name() + "(" + decFormat.format(menu.getMoney()) + ") ");
                 }
             });
             System.out.println("\n");
+        }
+    }
+
+    public void displayOrderedMenu(Event event) {
+        System.out.println("<주문 메뉴>");
+        Map<String, Integer> menu = event.getMenu();
+        for (String name : menu.keySet()) {
+            System.out.println(name + " " + menu.get(name) + "개");
         }
     }
 

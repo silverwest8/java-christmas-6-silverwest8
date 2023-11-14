@@ -18,6 +18,9 @@ public class Controller {
         this.eventPlanner.manageOrder(order);
 
         sayPreview(this.eventPlanner.getEvent().getVisitDate());
+
+        showOrderedMenu();
+
 //        this.eventPlanner.planEvent(customer);
 
 
@@ -29,6 +32,10 @@ public class Controller {
 
     private void sayPreview(Calendar date) {
         this.view.displayEventBenefitsPreview(date);
+    }
+
+    private void  showOrderedMenu() {
+        this.view.displayOrderedMenu(this.eventPlanner.getEvent());
     }
 
 }
