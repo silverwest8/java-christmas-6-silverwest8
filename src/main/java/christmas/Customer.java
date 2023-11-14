@@ -1,5 +1,8 @@
 package christmas;
 
+import christmas.Event.Event;
+import christmas.Menu.Menu;
+
 import java.util.*;
 
 public class Customer {

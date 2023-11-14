@@ -1,6 +1,8 @@
 package christmas;
 
 import camp.nextstep.edu.missionutils.Console;
+import christmas.Menu.Menu;
+import christmas.Menu.MenuCategory;
 
 import java.text.DecimalFormat;
 import java.util.*;

@@ -1,5 +1,9 @@
 package christmas;
 
+import christmas.Event.*;
+import christmas.Menu.Menu;
+import christmas.Menu.MenuCategory;
+
 import java.util.*;
 
 public class EventPlanner {
@@ -135,6 +139,7 @@ public class EventPlanner {
         Calendar visitDate = customer.getVisitDate();
         Map<Menu, Integer> menu = customer.getOrderedMenu();
         Integer visitDateDayNum = visitDate.get(Calendar.DAY_OF_WEEK);
+
         if (isDateInRange(visitDate, weekdayEvent.getStartDate(), weekdayEvent.getEndDate())
                 && WeekdayEvent.dayNum.contains(visitDateDayNum)
         ) {
@@ -158,7 +163,6 @@ public class EventPlanner {
     }
 
     private Integer countMenuOfCategory(Map<Menu, Integer> orderedMenu, MenuCategory menuCategory) {
-        // menu에서 menuCategory에 해당하는 메뉴 개수 return
         Integer count = 0;
         for (Menu menu : orderedMenu.keySet()) {
             if (menu.getMenuCategory().equals(menuCategory)) {

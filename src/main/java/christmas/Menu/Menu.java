@@ -1,4 +1,4 @@
-package christmas;
+package christmas.Menu;
 
 import java.util.EnumSet;
 

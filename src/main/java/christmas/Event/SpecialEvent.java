@@ -1,4 +1,4 @@
-package christmas;
+package christmas.Event;
 
 import java.util.Arrays;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 public class SpecialEvent extends Event {
 
     private final List<Integer> starDays;
-    static final Integer discountUnit = 1_000;
+    public static final Integer discountUnit = 1_000;
     private Integer discountAmount = 0;
 
     public SpecialEvent() {

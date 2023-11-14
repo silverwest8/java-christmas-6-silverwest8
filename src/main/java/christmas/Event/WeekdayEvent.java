@@ -1,16 +1,18 @@
-package christmas;
+package christmas.Event;
+
+import christmas.Menu.MenuCategory;
 
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
 public class WeekdayEvent extends Event {
-    static final List<Integer> dayNum = Arrays.asList(
+    public static final List<Integer> dayNum = Arrays.asList(
             Calendar.SUNDAY, Calendar.MONDAY, Calendar.TUESDAY, Calendar.WEDNESDAY, Calendar.THURSDAY
     );
     ;
-    static final MenuCategory appliedCategory = MenuCategory.디저트;
-    static final Integer discountUnit = 2_023;
+    public static final MenuCategory appliedCategory = MenuCategory.디저트;
+    public static final Integer discountUnit = 2_023;
     private Integer discountAmount = 0;
 
     public List<Integer> getDayNum() {

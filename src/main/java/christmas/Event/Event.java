@@ -1,4 +1,4 @@
-package christmas;
+package christmas.Event;
 
 import java.util.Calendar;
 
