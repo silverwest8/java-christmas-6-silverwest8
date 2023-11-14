@@ -2,16 +2,18 @@ package christmas.Event;
 
 import java.util.Calendar;
 
-public class ChristmasDdayEvent extends Event {
+public class ChristmasEvent extends Event {
     static Calendar christmasDay;
     public static final Integer minDiscountAmount = 1_000;
     public static final Integer discountUnit = 100;
     private Integer discountAmount = 0;
 
-    public ChristmasDdayEvent() {
+    public ChristmasEvent() {
+        this.name = "크리스마스 디데이 할인";
+
         Calendar christmasDay = Calendar.getInstance();
         christmasDay.set(2023, Calendar.DECEMBER, 25);
-        ChristmasDdayEvent.christmasDay = christmasDay;
+        ChristmasEvent.christmasDay = christmasDay;
 
 
         Calendar startDate = Calendar.getInstance();

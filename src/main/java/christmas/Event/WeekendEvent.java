@@ -12,6 +12,10 @@ public class WeekendEvent extends Event {
     public static final Integer discountUnit = 2_023;
     private Integer discountAmount = 0;
 
+    public WeekendEvent() {
+        this.name = "주말 할인";
+    }
+
     public Integer getDiscountAmount() {
         return discountAmount;
     }

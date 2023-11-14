@@ -1,6 +1,8 @@
 package christmas.Menu;
 
+import java.util.ArrayList;
 import java.util.EnumSet;
+import java.util.List;
 
 public enum Menu {
     양송이수프(MenuCategory.애피타이저, 6_000),
@@ -43,5 +45,13 @@ public enum Menu {
             }
         }
         return menus;
+    }
+
+    static public List<String> getAllMenuNames() {
+        List<String> entireMenu = new ArrayList<>();
+        for (Menu value : EnumSet.allOf(Menu.class)) {
+            entireMenu.add(value.name());
+        }
+        return entireMenu;
     }
 }

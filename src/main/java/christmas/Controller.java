@@ -1,7 +1,5 @@
 package christmas;
 
-import java.util.Calendar;
-
 public class Controller {
     EventPlanner eventPlanner = new EventPlanner();
     Customer customer = new Customer();
@@ -87,7 +85,7 @@ public class Controller {
     }
 
     private void showTotalBenefit() {
-        this.view.displayBenefitDetails(customer);
+        this.view.displayTotalBenefit(customer);
     }
 
     private void showDiscountedPaymentAmount() {

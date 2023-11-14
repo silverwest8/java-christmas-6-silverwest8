@@ -9,6 +9,7 @@ public class SpecialEvent extends Event {
     private Integer discountAmount = 0;
 
     public SpecialEvent() {
+        this.name = "특별 할인";
         this.starDays = Arrays.asList(3, 10, 17, 24, 31);
     }
 

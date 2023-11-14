@@ -14,6 +14,10 @@ public class WeekdayEvent extends Event {
     public static final Integer discountUnit = 2_023;
     private Integer discountAmount = 0;
 
+    public WeekdayEvent() {
+        this.name = "평일 할인";
+    }
+
     public void setDiscountAmount(Integer discountAmount) {
         this.discountAmount = discountAmount;
     }

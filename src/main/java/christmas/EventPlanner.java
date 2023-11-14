@@ -11,21 +11,21 @@ public class EventPlanner {
     public final String VISIT_DATE_QUESTION = "12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)";
     public final String ORDER_QUESTION = "주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)";
     static final String WARNING_MESSAGE = "[WARNING] ";
-    private final ChristmasDdayEvent christmasDdayEvent;
+    private final ChristmasEvent christmasDdayEvent;
     private final WeekdayEvent weekdayEvent;
     private final WeekendEvent weekendEvent;
     private final SpecialEvent specialEvent;
     private final BonusEvent bonusEvent;
 
     public EventPlanner() {
-        this.christmasDdayEvent = new ChristmasDdayEvent();
+        this.christmasDdayEvent = new ChristmasEvent();
         this.weekdayEvent = new WeekdayEvent();
         this.weekendEvent = new WeekendEvent();
         this.specialEvent = new SpecialEvent();
         this.bonusEvent = new BonusEvent();
     }
 
-    public ChristmasDdayEvent getChristmasDdayEvent() {
+    public ChristmasEvent getChristmasDdayEvent() {
         return christmasDdayEvent;
     }
 
@@ -128,7 +128,7 @@ public class EventPlanner {
                 christmasDdayEvent.getEndDate())
         ) {
             int appliedDay = customer.getVisitDate().get(Calendar.DATE) - 1;
-            int discountAmount = ChristmasDdayEvent.minDiscountAmount + appliedDay * ChristmasDdayEvent.discountUnit;
+            int discountAmount = ChristmasEvent.minDiscountAmount + appliedDay * ChristmasEvent.discountUnit;
             christmasDdayEvent.setDiscountAmount(discountAmount);
             customer.getAppliedEvents().add(christmasDdayEvent);
         }

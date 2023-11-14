@@ -11,6 +11,8 @@ public class BonusEvent extends Event {
     private Integer discountAmount = 0;
 
     public BonusEvent() {
+        this.name = "증정 이벤트";
+
         Calendar startDate = Calendar.getInstance();
         startDate.set(2023, Calendar.DECEMBER, 1);
         this.startDate = startDate;
