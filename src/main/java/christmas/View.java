@@ -127,14 +127,14 @@ public class View {
 
     public void displayTotalPrice(Integer totalPrice) {
         System.out.println("<할인 전 총주문 금액>");
-        System.out.println(decFormat.format(totalPrice)+"원");
+        System.out.println(decFormat.format(totalPrice) + "원");
         System.out.println();
     }
 
     public void displayBonusMenu(Customer customer) {
         System.out.println("<증정 메뉴>");
         Map<Menu, Integer> bonusMenu = customer.getBonusMenu();
-        if (bonusMenu == null) {
+        if (bonusMenu.isEmpty()) {
             System.out.println("없음");
             System.out.println();
             return;

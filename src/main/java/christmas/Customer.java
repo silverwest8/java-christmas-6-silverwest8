@@ -1,14 +1,15 @@
 package christmas;
 
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Customer {
 
     private Calendar visitDate;
-    private Map<Menu, Integer> orderedMenu;
+    private Map<Menu, Integer> orderedMenu = new HashMap<>();
     private Integer totalPrice;
-    private Map<Menu, Integer> bonusMenu;
+    private Map<Menu, Integer> bonusMenu = new HashMap<>();
 
 
     public Calendar getVisitDate() {
@@ -30,9 +31,11 @@ public class Customer {
     public Integer getTotalPrice() {
         return totalPrice;
     }
+
     public void setTotalPrice(Integer totalPrice) {
         this.totalPrice = totalPrice;
     }
+
     public Map<Menu, Integer> getBonusMenu() {
         return bonusMenu;
     }

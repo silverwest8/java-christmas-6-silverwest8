@@ -7,18 +7,12 @@ public class EventPlanner {
     public final String VISIT_DATE_QUESTION = "12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)";
     public final String ORDER_QUESTION = "주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)";
     static final String WARNING_MESSAGE = "[WARNING] ";
-    private final Event event;
-
-    public EventPlanner(Calendar eventStartDate) {
-        event = new Event();
-    }
-
-    public Event getEvent() {
-        return event;
-    }
+//    private final Event event;
+    private final BonusEvent bonusEvent;
 
     public EventPlanner() {
-        this.event = new Event();
+        this.bonusEvent = new BonusEvent();
+//        this.event = new Event();
     }
 
     public void manageDate(Customer customer, String visitDate) {
@@ -77,7 +71,7 @@ public class EventPlanner {
     }
 
     public void judgementBonusMenu(Customer customer) {
-        if (isDateInRange(customer.getVisitDate(), event) && customer.getTotalPrice() >= 120_000) {
+        if (isDateInRange(customer.getVisitDate(), bonusEvent) && customer.getTotalPrice() >= 120_000) {
             HashMap<Menu, Integer> bonusMenu = new HashMap<>();
             bonusMenu.put(Menu.샴페인, 1);
             customer.setBonusMenu(bonusMenu);
@@ -88,7 +82,7 @@ public class EventPlanner {
         return !targetDate.before(event.getEventStartDate()) && !targetDate.after(event.getEventEndDate());
     }
 
-    public void planEvent(Customer customer) {
+//    public void planEvent(Customer customer) {
 //        sayHello();
 //
 //        promptVisitDate();
@@ -101,6 +95,6 @@ public class EventPlanner {
 //        Event event = new Event();
 //        event.setVisitDate(visitDate);
 //        event.setMenu(menu);
-    }
+//    }
 
 }
