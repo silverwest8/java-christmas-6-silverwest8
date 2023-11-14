@@ -5,9 +5,9 @@ import java.util.Map;
 
 public class Event {
     private Calendar visitDate;
-    private Map<String, Integer> menu;
-//    private Integer totalPrice;
-
+    private Map<Menu, Integer> orderedMenu;
+    private Integer totalPrice;
+    private Map<Menu, Integer> bonusMenu;
 
     public Calendar getVisitDate() {
         return visitDate;
@@ -17,19 +17,27 @@ public class Event {
         this.visitDate = visitDate;
     }
 
-    public Map<String, Integer> getMenu() {
-        return menu;
+    public Map<Menu, Integer> getOrderedMenu() {
+        return orderedMenu;
     }
 
-    public void setMenu(Map<String, Integer> menu) {
-        this.menu = menu;
+    public void setOrderedMenu(Map<Menu, Integer> orderedMenu) {
+        this.orderedMenu = orderedMenu;
     }
 
-//    public Integer getTotalPrice() {
-//        return totalPrice;
-//    }
-//
-//    public void setTotalPrice(Integer totalPrice) {
-//        this.totalPrice = totalPrice;
-//    }
+    public Integer getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Integer totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public Map<Menu, Integer> getBonusMenu() {
+        return bonusMenu;
+    }
+
+    public void setBonusMenu(Map<Menu, Integer> bonusMenu) {
+        this.bonusMenu = bonusMenu;
+    }
 }

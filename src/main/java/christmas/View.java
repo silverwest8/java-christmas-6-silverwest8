@@ -23,7 +23,7 @@ public class View {
             validateVisitDate(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            inputVisitDate(message);
+            input = inputVisitDate(message);
         }
         return input;
     }
@@ -36,7 +36,7 @@ public class View {
             validateOrder(order);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            inputOrder(message);
+            order = inputOrder(message);
         }
         return order;
     }
@@ -51,7 +51,7 @@ public class View {
     }
 
     private void validateVisitDate(String input) {
-        String DATE_RANGE_ERROR = "유효하지 않은 날짜입니다. 다시 입력해 주세요.";
+        final String DATE_RANGE_ERROR = "유효하지 않은 날짜입니다. 다시 입력해 주세요.";
         if (input.length() > 9) {
             throw new IllegalArgumentException(ERROR_MESSAGE + DATE_RANGE_ERROR);
         }
@@ -65,7 +65,7 @@ public class View {
     }
 
     private void validateOrder(String input) {
-        String WRONG_MENU_ERROR = "유효하지 않은 주문입니다. 다시 입력해 주세요.";
+        final String WRONG_MENU_ERROR = "유효하지 않은 주문입니다. 다시 입력해 주세요.";
 
         ArrayList<String> menuAndQuantityList = new ArrayList<>(Arrays.asList(input.trim().split(",")));
         ArrayList<String> orderedMenu = new ArrayList<>();
@@ -118,9 +118,9 @@ public class View {
 
     public void displayOrderedMenu(Event event) {
         System.out.println("<주문 메뉴>");
-        Map<String, Integer> menu = event.getMenu();
-        for (String name : menu.keySet()) {
-            System.out.println(name + " " + menu.get(name) + "개");
+        Map<Menu, Integer> orderedMenu = event.getOrderedMenu();
+        for (Menu menu : orderedMenu.keySet()) {
+            System.out.println(menu.name() + " " + orderedMenu.get(menu) + "개");
         }
         System.out.println();
     }
@@ -128,6 +128,21 @@ public class View {
     public void displayTotalPrice(Integer totalPrice) {
         System.out.println("<할인 전 총주문 금액>");
         System.out.println(decFormat.format(totalPrice)+"원");
+        System.out.println();
+    }
+
+    public void displayBonusMenu(Event event) {
+        System.out.println("<증정 메뉴>");
+        Map<Menu, Integer> bonusMenu = event.getBonusMenu();
+        if (bonusMenu == null) {
+            System.out.println("없음");
+            System.out.println();
+            return;
+        }
+        for (Menu menu : bonusMenu.keySet()) {
+            System.out.println(menu.name() + " " + bonusMenu.get(menu) + "개");
+        }
+        System.out.println();
     }
 
 }
