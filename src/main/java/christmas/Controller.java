@@ -21,7 +21,8 @@ public class Controller {
 
         showOrderedMenu();
 
-        showTotalPrice(this.eventPlanner.calculateTotalPrice(customer));
+        this.eventPlanner.calculateTotalPrice(customer);
+        showTotalPrice(customer);
 
         if (this.eventPlanner.isOverMinTotalPrice(customer.getTotalPrice())) {
             this.eventPlanner.judgementBonusMenu(customer);
@@ -34,6 +35,9 @@ public class Controller {
         showBonusMenu();
 
         showBenefitDetails();
+
+        this.eventPlanner.calculateTotalBenefit(customer);
+        showTotalBenefit();
 
 //        this.eventPlanner.planEvent(customer);
 
@@ -52,8 +56,8 @@ public class Controller {
         this.view.displayOrderedMenu(customer);
     }
 
-    private void showTotalPrice(Integer totalPrice) {
-        this.view.displayTotalPrice(totalPrice);
+    private void showTotalPrice(Customer customer) {
+        this.view.displayTotalPrice(customer);
     }
 
     private void showBonusMenu() {
@@ -62,5 +66,9 @@ public class Controller {
 
     private void showBenefitDetails() {
         this.view.displayBenefitDetails(eventPlanner, customer);
+    }
+
+    private void showTotalBenefit() {
+        this.view.displayBenefitDetails(customer);
     }
 }

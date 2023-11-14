@@ -143,6 +143,24 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 총혜택_있음_테스트() {
+        assertSimpleTest(() -> {
+            runException("3", "티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1");
+            assertThat(output()).contains(
+                    "<총혜택 금액>" + LINE_SEPARATOR + "-31,246원"
+            );
+        });
+    }
+
+    @Test
+    void 총혜택_없음_테스트() {
+        assertSimpleTest(() -> {
+            runException("26", "타파스-1,제로콜라-1");
+            assertThat(output()).contains("<총혜택 금액>" + LINE_SEPARATOR + "0원");
+        });
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});

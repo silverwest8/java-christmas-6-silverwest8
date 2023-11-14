@@ -91,14 +91,13 @@ public class EventPlanner {
         System.out.println(WARNING_MESSAGE + ORDER_DRINK_ONLY_WARNING);
     }
 
-    public Integer calculateTotalPrice(Customer customer) {
+    public void calculateTotalPrice(Customer customer) {
         Map<Menu, Integer> orderedMenu = customer.getOrderedMenu();
         Integer totalPrice = 0;
         for (Menu menu : orderedMenu.keySet()) {
             totalPrice += menu.getMoney() * orderedMenu.get(menu);
         }
         customer.setTotalPrice(totalPrice);
-        return totalPrice;
     }
 
     public Boolean isOverMinTotalPrice(Integer totalPrice) {
@@ -184,6 +183,17 @@ public class EventPlanner {
             specialEvent.setDiscountAmount(discountAmount);
             customer.getAppliedEvents().add(specialEvent);
         }
+    }
+
+    public void calculateTotalBenefit(Customer customer) {
+        int christmasDiscount = christmasDdayEvent.getDiscountAmount();
+        int weekdayDiscount = weekdayEvent.getDiscountAmount();
+        int weekendDiscount = weekendEvent.getDiscountAmount();
+        int specialDiscount = specialEvent.getDiscountAmount();
+        int bonusEventDiscount = bonusEvent.getDiscountAmount();
+        Integer totalBenefit =
+                christmasDiscount + weekdayDiscount + weekendDiscount + specialDiscount + bonusEventDiscount;
+        customer.setBenefitPrice(totalBenefit);
     }
 
 //    public void planEvent(Customer customer) {
