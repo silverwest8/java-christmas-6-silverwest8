@@ -1,9 +1,13 @@
 package christmas;
 
+import christmas.View.InputView;
+import christmas.View.OutputView;
+
 public class Controller {
     EventPlanner eventPlanner = new EventPlanner();
     Customer customer = new Customer();
-    View view = new View();
+    OutputView outputView = new OutputView();
+    InputView inputView = new InputView();
 
     static final String WARNING_MESSAGE = "[WARNING] ";
 
@@ -23,25 +27,25 @@ public class Controller {
     }
 
     private void showEventGreeting() {
-        this.view.displayEventPlannerGreeting(this.eventPlanner.GREETING);
+        this.outputView.displayEventPlannerGreeting(this.eventPlanner.GREETING);
     }
 
     private void processVisitDate() {
-        String visitDate = this.view.inputVisitDate(this.eventPlanner.VISIT_DATE_QUESTION);
+        String visitDate = this.inputView.inputVisitDate(this.eventPlanner.VISIT_DATE_QUESTION);
         this.eventPlanner.manageDate(customer, visitDate);
     }
 
     private void processOrderMenu() {
-        String order = this.view.inputOrder(this.eventPlanner.ORDER_QUESTION);
+        String order = this.inputView.inputOrder(this.eventPlanner.ORDER_QUESTION);
         this.eventPlanner.manageOrder(customer, order);
     }
 
     private void showPreview(Customer customer) {
-        this.view.displayEventBenefitsPreview(customer.getVisitDate());
+        this.outputView.displayEventBenefitsPreview(customer.getVisitDate());
     }
 
     private void showOrderedMenu() {
-        this.view.displayOrderedMenu(customer);
+        this.outputView.displayOrderedMenu(customer);
     }
 
     private void processTotalPrice() {
@@ -50,7 +54,7 @@ public class Controller {
     }
 
     private void showTotalPrice(Customer customer) {
-        this.view.displayTotalPrice(customer);
+        this.outputView.displayTotalPrice(customer);
     }
 
     private void checkEvents() {
@@ -67,15 +71,15 @@ public class Controller {
     }
 
     private void showBonusMenu() {
-        this.view.displayBonusMenu(eventPlanner);
+        this.outputView.displayBonusMenu(eventPlanner);
     }
 
     private void showBenefitDetails() {
-        this.view.displayBenefitDetails(eventPlanner, customer);
+        this.outputView.displayBenefitDetails(eventPlanner, customer);
     }
 
     private void showTotalBenefit() {
-        this.view.displayTotalBenefit(customer);
+        this.outputView.displayTotalBenefit(customer);
     }
 
     private void processDiscountedPaymentAmount() {
@@ -84,7 +88,7 @@ public class Controller {
     }
 
     private void showDiscountedPaymentAmount() {
-        this.view.displayDiscountedPaymentAmount(customer);
+        this.outputView.displayDiscountedPaymentAmount(customer);
     }
 
     private void processGrantBadge() {
@@ -93,7 +97,7 @@ public class Controller {
     }
 
     private void showGrantedBadge() {
-        this.view.displayGrantedBadge(customer);
+        this.outputView.displayGrantedBadge(customer);
     }
 
     private void processTotalBenefit() {
