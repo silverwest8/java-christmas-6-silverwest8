@@ -16,11 +16,11 @@ public class ChristmasDdayEvent extends Event {
 
         Calendar startDate = Calendar.getInstance();
         startDate.set(2023, Calendar.DECEMBER, 1);
-        eventStartDate = startDate;
+        this.startDate = startDate;
 
         Calendar endDate = Calendar.getInstance();
         endDate.set(2023, Calendar.DECEMBER, 25);
-        eventEndDate = endDate;
+        this.endDate = endDate;
     }
 
     public Integer getDiscountAmount() {

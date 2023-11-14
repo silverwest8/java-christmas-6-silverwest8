@@ -8,11 +8,37 @@ public class EventPlanner {
     public final String ORDER_QUESTION = "주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)";
     static final String WARNING_MESSAGE = "[WARNING] ";
     private final ChristmasDdayEvent christmasDdayEvent;
+    private final WeekdayEvent weekdayEvent;
+    private final WeekendEvent weekendEvent;
+    private final SpecialEvent specialEvent;
     private final BonusEvent bonusEvent;
 
     public EventPlanner() {
         this.christmasDdayEvent = new ChristmasDdayEvent();
+        this.weekdayEvent = new WeekdayEvent();
+        this.weekendEvent = new WeekendEvent();
+        this.specialEvent = new SpecialEvent();
         this.bonusEvent = new BonusEvent();
+    }
+
+    public ChristmasDdayEvent getChristmasDdayEvent() {
+        return christmasDdayEvent;
+    }
+
+    public WeekdayEvent getWeekdayEvent() {
+        return weekdayEvent;
+    }
+
+    public WeekendEvent getWeekendEvent() {
+        return weekendEvent;
+    }
+
+    public SpecialEvent getSpecialEvent() {
+        return specialEvent;
+    }
+
+    public BonusEvent getBonusEvent() {
+        return bonusEvent;
     }
 
     public void manageDate(Customer customer, String visitDate) {
@@ -72,22 +98,83 @@ public class EventPlanner {
     }
 
     public void judgementBonusMenu(Customer customer) {
-        if (isDateInRange(customer.getVisitDate(), bonusEvent) && customer.getTotalPrice() >= 120_000) {
+        if (isDateInRange(customer.getVisitDate(), bonusEvent.getStartDate(), bonusEvent.getEndDate())
+                && customer.getTotalPrice() >= 120_000
+        ) {
             HashMap<Menu, Integer> bonusMenu = new HashMap<>();
             bonusMenu.put(Menu.샴페인, 1);
-            customer.setBonusMenu(bonusMenu);
+            bonusEvent.setBonusMenu(bonusMenu);
+            bonusEvent.setDiscountAmount(Menu.샴페인.getMoney());
+            //
+            customer.getAppliedEvents().add(bonusEvent);
         }
     }
 
-    private Boolean isDateInRange(Calendar targetDate, Event event) {
-        return !targetDate.before(event.getEventStartDate()) && !targetDate.after(event.getEventEndDate());
+    private Boolean isDateInRange(Calendar targetDate, Calendar startDate, Calendar endDate) {
+        return !targetDate.before(startDate) && !targetDate.after(endDate);
+    }
+
+    private Boolean isDateInList(Calendar targetDate, List<Integer> startDays) {
+        return startDays.contains(targetDate.get(Calendar.DATE));
     }
 
     public void judgementChristmasDdayEvent(Customer customer) {
-        if (isDateInRange(customer.getVisitDate(), christmasDdayEvent)) {
+        if (isDateInRange(
+                customer.getVisitDate(),
+                christmasDdayEvent.getStartDate(),
+                christmasDdayEvent.getEndDate())
+        ) {
             int appliedDay = customer.getVisitDate().get(Calendar.DATE) - 1;
             int discountAmount = ChristmasDdayEvent.minDiscountAmount + appliedDay * ChristmasDdayEvent.discountUnit;
             christmasDdayEvent.setDiscountAmount(discountAmount);
+            customer.getAppliedEvents().add(christmasDdayEvent);
+        }
+    }
+
+    public void judgementWeekdayEvent(Customer customer) {
+        Calendar visitDate = customer.getVisitDate();
+        Map<Menu, Integer> menu = customer.getOrderedMenu();
+        Integer visitDateDayNum = visitDate.get(Calendar.DAY_OF_WEEK);
+        if (isDateInRange(visitDate, weekdayEvent.getStartDate(), weekdayEvent.getEndDate())
+                && WeekdayEvent.dayNum.contains(visitDateDayNum)
+        ) {
+            int discountAmount = countMenuOfCategory(menu, WeekdayEvent.appliedCategory) * WeekdayEvent.discountUnit;
+            weekdayEvent.setDiscountAmount(discountAmount);
+            customer.getAppliedEvents().add(weekdayEvent);
+        }
+    }
+
+    public void judgementWeekendEvent(Customer customer) {
+        Calendar visitDate = customer.getVisitDate();
+        Map<Menu, Integer> menu = customer.getOrderedMenu();
+        Integer visitDateDayNum = visitDate.get(Calendar.DAY_OF_WEEK);
+        if (isDateInRange(visitDate, weekendEvent.getStartDate(), weekendEvent.getEndDate())
+                && WeekendEvent.dayNum.contains(visitDateDayNum)
+        ) {
+            int discountAmount = countMenuOfCategory(menu, WeekendEvent.appliedCategory) * WeekendEvent.discountUnit;
+            weekendEvent.setDiscountAmount(discountAmount);
+            customer.getAppliedEvents().add(weekendEvent);
+        }
+    }
+
+    private Integer countMenuOfCategory(Map<Menu, Integer> orderedMenu, MenuCategory menuCategory) {
+        // menu에서 menuCategory에 해당하는 메뉴 개수 return
+        Integer count = 0;
+        for (Menu menu : orderedMenu.keySet()) {
+            if (menu.getMenuCategory().equals(menuCategory)) {
+                count += orderedMenu.get(menu);
+            }
+        }
+        return count;
+    }
+
+    public void judgementSpecialEvent(Customer customer) {
+        Calendar visitDate = customer.getVisitDate();
+        if (isDateInRange(visitDate, weekendEvent.getStartDate(), weekendEvent.getEndDate())
+                && isDateInList(customer.getVisitDate(), specialEvent.getStarDays())) {
+            int discountAmount = SpecialEvent.discountUnit;
+            specialEvent.setDiscountAmount(discountAmount);
+            customer.getAppliedEvents().add(specialEvent);
         }
     }
 
@@ -100,7 +187,7 @@ public class EventPlanner {
 //        promptMenu();
 //        Map<Menu, Integer> menu = customer.requestMenu();
 
-    // 이벤트 생성
+// 이벤트 생성
 //        Event event = new Event();
 //        event.setVisitDate(visitDate);
 //        event.setMenu(menu);

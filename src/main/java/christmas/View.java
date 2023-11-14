@@ -108,7 +108,7 @@ public class View {
         for (MenuCategory value : EnumSet.allOf(MenuCategory.class)) {
             System.out.println("<" + value.name() + ">");
             EnumSet.allOf(Menu.class).forEach(menu -> {
-                if (menu.getMenuKind() == value) {
+                if (menu.getMenuCategory() == value) {
                     System.out.print(menu.name() + "(" + decFormat.format(menu.getMoney()) + ") ");
                 }
             });
@@ -131,9 +131,9 @@ public class View {
         System.out.println();
     }
 
-    public void displayBonusMenu(Customer customer) {
+    public void displayBonusMenu(EventPlanner eventPlanner) {
         System.out.println("<증정 메뉴>");
-        Map<Menu, Integer> bonusMenu = customer.getBonusMenu();
+        Map<Menu, Integer> bonusMenu = eventPlanner.getBonusEvent().getBonusMenu();
         if (bonusMenu.isEmpty()) {
             System.out.println("없음");
             System.out.println();
@@ -145,16 +145,25 @@ public class View {
         System.out.println();
     }
 
-    public void displayBenefitDetails(int christmasDiscount, int weekdayDiscount, int specialDiscount, int bonusEvent) {
+    public void displayBenefitDetails(EventPlanner eventPlanner, Customer customer) {
+        int christmasDiscount = eventPlanner.getChristmasDdayEvent().getDiscountAmount();
+        int weekdayDiscount = eventPlanner.getWeekdayEvent().getDiscountAmount();
+        int weekendDiscount = eventPlanner.getWeekendEvent().getDiscountAmount();
+        int specialDiscount = eventPlanner.getSpecialEvent().getDiscountAmount();
+        int bonusEvent = eventPlanner.getBonusEvent().getDiscountAmount();
+
         System.out.println("<혜택 내역>");
         printBenefit("크리스마스 디데이 할인", christmasDiscount);
         printBenefit("평일 할인", weekdayDiscount);
+        printBenefit("주말 할인", weekendDiscount);
         printBenefit("특별 할인", specialDiscount);
         printBenefit("증정 이벤트", bonusEvent);
     }
 
     private static void printBenefit(String benefitName, int amount) {
-        System.out.printf("%s: %,d원%n", benefitName, amount);
+        if (amount > 0) {
+            System.out.printf("%s: -%,d원%n", benefitName, amount);
+        }
     }
 
 }

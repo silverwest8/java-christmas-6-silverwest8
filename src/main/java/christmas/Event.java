@@ -1,25 +1,24 @@
 package christmas;
 
 import java.util.Calendar;
-import java.util.Map;
 
 public class Event {
-    public Calendar eventStartDate;
-    public Calendar eventEndDate;
+    public Calendar startDate;
+    public Calendar endDate;
 
-    public Calendar getEventStartDate() {
-        return eventStartDate;
+    public Calendar getStartDate() {
+        return startDate;
     }
 
-    public Calendar getEventEndDate() {
-        return eventEndDate;
+    public Calendar getEndDate() {
+        return endDate;
     }
 
-    public void setEventStartDate(Calendar eventStartDate) {
-        this.eventStartDate = eventStartDate;
+    public void setStartDate(Calendar startDate) {
+        this.startDate = startDate;
     }
 
-    public void setEventEndDate(Calendar eventEndDate) {
-        this.eventEndDate = eventEndDate;
+    public void setEndDate(Calendar endDate) {
+        this.endDate = endDate;
     }
 }

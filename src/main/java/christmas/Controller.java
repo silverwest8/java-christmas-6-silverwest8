@@ -27,6 +27,11 @@ public class Controller {
         showBonusMenu();
 
         this.eventPlanner.judgementChristmasDdayEvent(customer);
+        this.eventPlanner.judgementWeekdayEvent(customer);
+        this.eventPlanner.judgementWeekendEvent(customer);
+        this.eventPlanner.judgementSpecialEvent(customer);
+
+        showBenefitDetails();
 
 //        this.eventPlanner.planEvent(customer);
 
@@ -50,6 +55,10 @@ public class Controller {
     }
 
     private void showBonusMenu() {
-        this.view.displayBonusMenu(customer);
+        this.view.displayBonusMenu(eventPlanner);
+    }
+
+    private void showBenefitDetails() {
+        this.view.displayBenefitDetails(eventPlanner, customer);
     }
 }

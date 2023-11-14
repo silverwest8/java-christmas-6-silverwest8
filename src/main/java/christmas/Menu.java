@@ -14,16 +14,16 @@ public enum Menu {
     레드와인(MenuCategory.음료, 60_000),
     샴페인(MenuCategory.음료, 25_000);
 
-    private final MenuCategory menuKind;
+    private final MenuCategory menuCategory;
     private final Integer money;
 
-    Menu(MenuCategory menuKind, Integer money) {
-        this.menuKind = menuKind;
+    Menu(MenuCategory menuCategory, Integer money) {
+        this.menuCategory = menuCategory;
         this.money = money;
     }
 
-    public MenuCategory getMenuKind() {
-        return menuKind;
+    public MenuCategory getMenuCategory() {
+        return menuCategory;
     }
 
     public int getMoney() {
@@ -33,7 +33,7 @@ public enum Menu {
     static public EnumSet<Menu> getMenuOf(MenuCategory category) {
         EnumSet<Menu> menus = EnumSet.noneOf(Menu.class);
         for (Menu menu: EnumSet.allOf(Menu.class)) {
-            if (menu.getMenuKind() == category) {
+            if (menu.getMenuCategory() == category) {
                 menus.add(menu);
             }
         }

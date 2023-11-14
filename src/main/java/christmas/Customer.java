@@ -7,7 +7,6 @@ public class Customer {
     private Calendar visitDate;
     private Map<Menu, Integer> orderedMenu = new HashMap<>();
     private Integer totalPrice;
-    private Map<Menu, Integer> bonusMenu = new HashMap<>();
     private List<Event> appliedEvents = new ArrayList<>();
 
 
@@ -35,12 +34,12 @@ public class Customer {
         this.totalPrice = totalPrice;
     }
 
-    public Map<Menu, Integer> getBonusMenu() {
-        return bonusMenu;
+    public List<Event> getAppliedEvents() {
+        return appliedEvents;
     }
 
-    public void setBonusMenu(Map<Menu, Integer> bonusMenu) {
-        this.bonusMenu = bonusMenu;
+    public void setAppliedEvents(List<Event> appliedEvents) {
+        this.appliedEvents = appliedEvents;
     }
 
 }

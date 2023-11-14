@@ -1,15 +1,36 @@
 package christmas;
 
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class BonusEvent extends Event {
+    private Map<Menu, Integer> bonusMenu = new HashMap<>();
+    private Integer discountAmount = 0;
+
     public BonusEvent() {
         Calendar startDate = Calendar.getInstance();
         startDate.set(2023, Calendar.DECEMBER, 1);
-        eventStartDate = startDate;
+        this.startDate = startDate;
 
         Calendar endDate = Calendar.getInstance();
         endDate.set(2023, Calendar.DECEMBER, 31);
-        eventEndDate = endDate;
+        this.endDate = endDate;
+    }
+
+    public Map<Menu, Integer> getBonusMenu() {
+        return bonusMenu;
+    }
+
+    public void setBonusMenu(Map<Menu, Integer> bonusMenu) {
+        this.bonusMenu = bonusMenu;
+    }
+
+    public Integer getDiscountAmount() {
+        return discountAmount;
+    }
+
+    public void setDiscountAmount(Integer discountAmount) {
+        this.discountAmount = discountAmount;
     }
 }
