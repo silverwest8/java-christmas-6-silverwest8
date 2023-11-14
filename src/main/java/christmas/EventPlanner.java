@@ -7,7 +7,6 @@ public class EventPlanner {
     public final String VISIT_DATE_QUESTION = "12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)";
     public final String ORDER_QUESTION = "주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)";
     static final String WARNING_MESSAGE = "[WARNING] ";
-
     private final Event event;
 
     public Event getEvent() {
@@ -61,6 +60,15 @@ public class EventPlanner {
             }
         }
         System.out.println(WARNING_MESSAGE + ORDER_DRINK_ONLY_WARNING);
+    }
+
+    public Integer calculateTotalPrice() {
+        Map<String, Integer> menu = event.getMenu();
+        Integer totalPrice = 0;
+        for (String name : menu.keySet()) {
+            totalPrice += Menu.valueOf(name).getMoney()*menu.get(name);
+        }
+        return totalPrice;
     }
 
     public void planEvent(Customer customer) {

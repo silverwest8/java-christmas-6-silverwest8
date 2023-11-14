@@ -6,6 +6,8 @@ import java.util.Map;
 public class Event {
     private Calendar visitDate;
     private Map<String, Integer> menu;
+//    private Integer totalPrice;
+
 
     public Calendar getVisitDate() {
         return visitDate;
@@ -22,4 +24,12 @@ public class Event {
     public void setMenu(Map<String, Integer> menu) {
         this.menu = menu;
     }
+
+//    public Integer getTotalPrice() {
+//        return totalPrice;
+//    }
+//
+//    public void setTotalPrice(Integer totalPrice) {
+//        this.totalPrice = totalPrice;
+//    }
 }

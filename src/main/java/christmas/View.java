@@ -10,6 +10,7 @@ public class View {
     static final String regExp = "^[0-9]+$";
     static final Integer MIN_DATE = 1;
     static final Integer MAX_DATE = 31;
+    DecimalFormat decFormat = new DecimalFormat("###,###");
 
     public void displayEventPlannerGreeting(String message) {
         System.out.println(message);
@@ -46,6 +47,7 @@ public class View {
                         + date.get(Calendar.DATE) + "일"
                         + "에 우테코 식당에서 받을 이벤트 혜택 미리 보기!"
         );
+        System.out.println();
     }
 
     private void validateVisitDate(String input) {
@@ -103,7 +105,6 @@ public class View {
     }
 
     public void displayEntireMenu() {
-        DecimalFormat decFormat = new DecimalFormat("###,###");
         for (MenuCategory value : EnumSet.allOf(MenuCategory.class)) {
             System.out.println("<" + value.name() + ">");
             EnumSet.allOf(Menu.class).forEach(menu -> {
@@ -121,7 +122,12 @@ public class View {
         for (String name : menu.keySet()) {
             System.out.println(name + " " + menu.get(name) + "개");
         }
+        System.out.println();
     }
 
+    public void displayTotalPrice(Integer totalPrice) {
+        System.out.println("<할인 전 총주문 금액>");
+        System.out.println(decFormat.format(totalPrice)+"원");
+    }
 
 }

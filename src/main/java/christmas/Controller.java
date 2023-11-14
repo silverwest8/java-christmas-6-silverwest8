@@ -1,6 +1,7 @@
 package christmas;
 
 import java.util.Calendar;
+import java.util.Map;
 
 public class Controller {
     EventPlanner eventPlanner = new EventPlanner();
@@ -21,6 +22,8 @@ public class Controller {
 
         showOrderedMenu();
 
+        showTotalPrice(this.eventPlanner.calculateTotalPrice());
+
 //        this.eventPlanner.planEvent(customer);
 
 
@@ -34,8 +37,11 @@ public class Controller {
         this.view.displayEventBenefitsPreview(date);
     }
 
-    private void  showOrderedMenu() {
+    private void showOrderedMenu() {
         this.view.displayOrderedMenu(this.eventPlanner.getEvent());
     }
 
+    private void showTotalPrice(Integer totalPrice) {
+        this.view.displayTotalPrice(totalPrice);
+    }
 }
