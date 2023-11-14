@@ -16,8 +16,8 @@ public enum Menu {
     private final MenuCategory menuKind;
     private final Integer money;
 
-    Menu(MenuCategory memuKind, Integer money) {
-        this.menuKind = memuKind;
+    Menu(MenuCategory menuKind, Integer money) {
+        this.menuKind = menuKind;
         this.money = money;
     }
 }
